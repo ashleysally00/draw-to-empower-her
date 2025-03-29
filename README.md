@@ -42,6 +42,19 @@ You are welcome to:
 - Learn from the open-source code (MIT License), with credit
 
 ---
+## AI Use Restriction
+
+The character "Penelope," the game concept "Draw to Empower Her," all associated artwork, writing, and gameplay design are protected original works by Ashley Rice.
+
+These materials may not be used in whole or in part to train, fine-tune, or develop artificial intelligence (AI) systems, large language models (LLMs), generative image models, or similar machine learning technologies.
+
+No part of this project may be scraped, mined, or otherwise processed by AI systems for training or generation purposes, commercial or non-commercial, without explicit written permission.
+
+This restriction applies to:
+- Text, dialogue, and poetic language in the game
+- Visual artwork and character design
+- UI/UX and creative concept of the game
+
 
 ## Copyright and Licensing
 
@@ -54,6 +67,8 @@ While the source code in this repository is licensed under an open-source licens
 - **Code License**: [MIT License](./LICENSE)  
 - **Creative Assets License**: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
+
 For licensing inquiries or usage requests, please contact:  
 **ashleysally00@gmail.com**
+
 
