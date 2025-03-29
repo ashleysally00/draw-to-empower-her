@@ -27,7 +27,7 @@ Thank you for drawing!🎨
 
 ![Penelope 4](https://raw.githubusercontent.com/ashleysally00/draw-to-empower-her/main/pen4.png)
 
-## License and Usage Restrictions
+## Character and Concept Statement of Rights
 
 This project — including the game concept, the character "Penelope," the title "Draw to Empower Her," all visual assets, and all written content — is a protected creative work by Ashley Rice.
 
@@ -43,17 +43,16 @@ You are welcome to:
 
 ---
 
-## Copyright Notice for Character and Concept
+## Copyright and Licensing
 
 Copyright © 2024 Ashley Rice. All rights reserved.
 
 The character "Penelope" and all associated artwork, designs, and written content are original creations of Ashley Rice. These creative assets are protected under copyright law and may not be used, reproduced, or distributed without explicit written permission.
 
-While the source code in this repository is licensed under an open-source license (see `LICENSE`), this license does **not** extend to the artwork, character, or other creative materials.
+While the source code in this repository is licensed under an open-source license (see `LICENSE`), this license does **not** extend to the character, game concept, visuals, or writing. These remain the intellectual property of the creator.
 
-All creative assets are licensed under  
-[CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)  
-The source code is licensed under the [MIT License](./LICENSE)
+- **Code License**: [MIT License](./LICENSE)  
+- **Creative Assets License**: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 For licensing inquiries or usage requests, please contact:  
 **ashleysally00@gmail.com**
