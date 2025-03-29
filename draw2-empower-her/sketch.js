@@ -1,7 +1,8 @@
 let currentScreen = "start";
 let drawingLayer;
-let showMessage = "";
 let characterImg;
+let showMessage = "";
+let selectedSymbol = "";
 
 function preload() {
   characterImg = loadImage(
@@ -15,6 +16,7 @@ function setup() {
   createCanvas(600, 400);
   drawingLayer = createGraphics(600, 400);
   drawingLayer.background(255);
+  textFont("Arial");
 }
 
 function draw() {
@@ -24,6 +26,8 @@ function draw() {
     drawStartScreen();
   } else if (currentScreen === "draw") {
     drawDrawingScreen();
+  } else if (currentScreen === "chooseSymbol") {
+    drawSymbolChoiceScreen();
   } else if (currentScreen === "response") {
     drawResponseScreen();
   }
@@ -44,9 +48,18 @@ function drawStartScreen() {
 
 function drawDrawingScreen() {
   image(drawingLayer, 0, 0);
+  image(characterImg, 150, 10, 300, 400);
 
-  // Draw character image
-  image(characterImg, 250, 80, 100, 200); // Adjust if needed
+  // Hint message
+  fill(50);
+  textAlign(CENTER);
+  textSize(16);
+  text(
+    "✨ Draw a heart, a star, or a crown to reveal a secret message...",
+    width / 2,
+    30
+  );
+  text("Or draw anything else to create your own magic.", width / 2, 50);
 
   if (mouseIsPressed && mouseY < height - 50) {
     drawingLayer.stroke(0);
@@ -54,7 +67,7 @@ function drawDrawingScreen() {
     drawingLayer.line(mouseX, mouseY, pmouseX, pmouseY);
   }
 
-  // "Done" button
+  // Done button
   fill(100, 255, 150);
   rect(width - 120, height - 40, 100, 30, 10);
   fill(0);
@@ -62,14 +75,47 @@ function drawDrawingScreen() {
   text("Done", width - 70, height - 20);
 }
 
-function drawResponseScreen() {
+function drawSymbolChoiceScreen() {
   image(drawingLayer, 0, 0);
-  image(characterImg, 250, 80, 100, 200);
+  image(characterImg, 150, 10, 300, 400);
 
   fill(0);
-  textSize(24);
   textAlign(CENTER);
+  textSize(20);
+  text("What did you draw?", width / 2, 40);
+
+  drawSymbolButton(width / 2 - 75, 80, "❤️ Heart", "heart");
+  drawSymbolButton(width / 2 - 75, 130, "👑 Crown", "crown");
+  drawSymbolButton(width / 2 - 75, 180, "⭐ Star", "star");
+  drawSymbolButton(width / 2 - 75, 230, "🎨 Something else", "other");
+}
+
+function drawSymbolButton(x, y, label, symbolKey) {
+  fill(selectedSymbol === symbolKey ? "#cceeff" : 255);
+  stroke(0);
+  rect(x, y, 150, 30, 8);
+  noStroke();
+  fill(0);
+  textSize(16);
+  textAlign(CENTER, CENTER);
+  text(label, x + 75, y + 15);
+}
+
+function drawResponseScreen() {
+  image(drawingLayer, 0, 0);
+  image(characterImg, 150, 10, 300, 400);
+
+  fill(0);
+  textAlign(CENTER);
+  textSize(24);
   text(showMessage, width / 2, height - 60);
+
+  // "Draw Again" button
+  fill(200, 230, 255);
+  rect(width / 2 - 60, height - 40, 120, 30, 8);
+  fill(0);
+  textSize(16);
+  text("Draw Again", width / 2, height - 20);
 }
 
 function mousePressed() {
@@ -89,41 +135,47 @@ function mousePressed() {
       mouseY > height - 40 &&
       mouseY < height - 10
     ) {
-      analyzeDrawing();
-      currentScreen = "response";
+      currentScreen = "chooseSymbol";
+    }
+  } else if (currentScreen === "chooseSymbol") {
+    if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75) {
+      if (mouseY > 80 && mouseY < 110) selectedSymbol = "heart";
+      else if (mouseY > 130 && mouseY < 160) selectedSymbol = "crown";
+      else if (mouseY > 180 && mouseY < 210) selectedSymbol = "star";
+      else if (mouseY > 230 && mouseY < 260) selectedSymbol = "other";
+
+      if (selectedSymbol !== "") {
+        showMessage = getMessageFromSymbol(selectedSymbol);
+        currentScreen = "response";
+      }
+    }
+  } else if (currentScreen === "response") {
+    // "Draw Again" button clicked
+    if (
+      mouseX > width / 2 - 60 &&
+      mouseX < width / 2 + 60 &&
+      mouseY > height - 40 &&
+      mouseY < height - 10
+    ) {
+      drawingLayer.clear();
+      drawingLayer.background(255);
+      selectedSymbol = "";
+      showMessage = "";
+      currentScreen = "draw";
     }
   }
 }
 
-function analyzeDrawing() {
-  // Check average darkness in specific areas
-  let headArea = drawingLayer.get(290, 90, 20, 20);
-  let chestArea = drawingLayer.get(290, 180, 20, 20);
-  let shoulderArea = drawingLayer.get(260, 150, 80, 20);
-
-  let headDark = averageDarkness(headArea);
-  let chestDark = averageDarkness(chestArea);
-  let shoulderDark = averageDarkness(shoulderArea);
-
-  if (headDark > 50) {
-    showMessage = "With wisdom, I guide.";
-  } else if (chestDark > 50) {
-    showMessage = "With love, I lead.";
-  } else if (shoulderDark > 50) {
-    showMessage = "With courage, I soar.";
-  } else {
-    showMessage = "Thank you for your art!";
+function getMessageFromSymbol(symbol) {
+  switch (symbol) {
+    case "heart":
+      return "With love, I lead.";
+    case "crown":
+      return "With wisdom, I guide.";
+    case "star":
+      return "With courage, I soar.";
+    default:
+      return "Thank you for your art!";
   }
 }
 
-function averageDarkness(region) {
-  let total = 0;
-  for (let i = 0; i < region.length; i += 4) {
-    let r = region[i];
-    let g = region[i + 1];
-    let b = region[i + 2];
-    let brightness = (r + g + b) / 3;
-    total += 255 - brightness; // darkness
-  }
-  return total / (region.length / 4);
-}
