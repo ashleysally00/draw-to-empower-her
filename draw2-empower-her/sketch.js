@@ -48,9 +48,8 @@ function drawStartScreen() {
 
 function drawDrawingScreen() {
   image(drawingLayer, 0, 0);
-  image(characterImg, 150, 10, 300, 400);
+  image(characterImg, 175, 80, 250, 300); // narrower and centered
 
-  // Hint message
   fill(50);
   textAlign(CENTER);
   textSize(16);
@@ -77,45 +76,45 @@ function drawDrawingScreen() {
 
 function drawSymbolChoiceScreen() {
   image(drawingLayer, 0, 0);
-  image(characterImg, 150, 10, 300, 400);
+  image(characterImg, 175, 80, 250, 300); // match position
 
   fill(0);
   textAlign(CENTER);
   textSize(20);
-  text("What did you draw?", width / 2, 40);
+  text("What did you draw?", width / 2, 30);
 
-  drawSymbolButton(width / 2 - 75, 80, "❤️ Heart", "heart");
-  drawSymbolButton(width / 2 - 75, 130, "👑 Crown", "crown");
-  drawSymbolButton(width / 2 - 75, 180, "⭐ Star", "star");
-  drawSymbolButton(width / 2 - 75, 230, "🎨 Something else", "other");
+  drawSymbolButton(440, 160, "❤️ Heart", "heart");
+  drawSymbolButton(440, 200, "👑 Crown", "crown");
+  drawSymbolButton(440, 240, "⭐ Star", "star");
+  drawSymbolButton(440, 280, "🎨 Something else", "other");
 }
 
 function drawSymbolButton(x, y, label, symbolKey) {
   fill(selectedSymbol === symbolKey ? "#cceeff" : 255);
   stroke(0);
-  rect(x, y, 150, 30, 8);
+  rect(x, y, 140, 30, 8);
   noStroke();
   fill(0);
   textSize(16);
   textAlign(CENTER, CENTER);
-  text(label, x + 75, y + 15);
+  text(label, x + 70, y + 15);
 }
 
 function drawResponseScreen() {
   image(drawingLayer, 0, 0);
-  image(characterImg, 150, 10, 300, 400);
+  image(characterImg, 175, 80, 250, 300); // match position
 
   fill(0);
   textAlign(CENTER);
   textSize(24);
-  text(showMessage, width / 2, height - 60);
+  text(showMessage, width / 2, 50);
 
-  // "Draw Again" button
+  // "Draw Again" button - moved down
   fill(200, 230, 255);
-  rect(width / 2 - 60, height - 40, 120, 30, 8);
+  rect(width / 2 - 60, height - 30, 120, 30, 8);
   fill(0);
   textSize(16);
-  text("Draw Again", width / 2, height - 20);
+  text("Draw Again", width / 2, height - 10);
 }
 
 function mousePressed() {
@@ -138,11 +137,11 @@ function mousePressed() {
       currentScreen = "chooseSymbol";
     }
   } else if (currentScreen === "chooseSymbol") {
-    if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75) {
-      if (mouseY > 80 && mouseY < 110) selectedSymbol = "heart";
-      else if (mouseY > 130 && mouseY < 160) selectedSymbol = "crown";
-      else if (mouseY > 180 && mouseY < 210) selectedSymbol = "star";
-      else if (mouseY > 230 && mouseY < 260) selectedSymbol = "other";
+    if (mouseX > 440 && mouseX < 580) {
+      if (mouseY > 160 && mouseY < 190) selectedSymbol = "heart";
+      else if (mouseY > 200 && mouseY < 230) selectedSymbol = "crown";
+      else if (mouseY > 240 && mouseY < 270) selectedSymbol = "star";
+      else if (mouseY > 280 && mouseY < 310) selectedSymbol = "other";
 
       if (selectedSymbol !== "") {
         showMessage = getMessageFromSymbol(selectedSymbol);
@@ -150,12 +149,11 @@ function mousePressed() {
       }
     }
   } else if (currentScreen === "response") {
-    // "Draw Again" button clicked
     if (
       mouseX > width / 2 - 60 &&
       mouseX < width / 2 + 60 &&
-      mouseY > height - 40 &&
-      mouseY < height - 10
+      mouseY > height - 30 &&
+      mouseY < height
     ) {
       drawingLayer.clear();
       drawingLayer.background(255);
@@ -178,4 +176,3 @@ function getMessageFromSymbol(symbol) {
       return "Thank you for your art!";
   }
 }
-
