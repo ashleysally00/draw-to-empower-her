@@ -27,11 +27,34 @@ Thank you for drawing!🎨
 
 ![Penelope 4](https://raw.githubusercontent.com/ashleysally00/draw-to-empower-her/main/pen4.png)
 
-Copyright Notice for Character
+## License and Usage Restrictions
+
+This project — including the game concept, the character "Penelope," the title "Draw to Empower Her," all visual assets, and all written content — is a protected creative work by Ashley Rice.
+
+Please do not:
+- Use any part of the artwork, character, or writing in other projects
+- Copy, reproduce, or republish this game or any variation of it
+- Create derivative versions of the game or concept
+- Use the name "Draw to Empower Her" in your own projects
+
+You are welcome to:
+- View and play the game
+- Learn from the open-source code (MIT License), with credit
+
+---
+
+## Copyright Notice for Character and Concept
+
 Copyright © 2024 Ashley Rice. All rights reserved.
 
-Please note that the character "Penelope" and all associated designs and representations are original creations of Ashley Rice and may not be used, reproduced, or distributed without explicit written permission.
+The character "Penelope" and all associated artwork, designs, and written content are original creations of Ashley Rice. These creative assets are protected under copyright law and may not be used, reproduced, or distributed without explicit written permission.
 
-While the source code in this repository is licensed under open-source terms (see LICENSE.txt), this open-source license does not extend to artwork, character designs, or other creative assets, which remain fully protected under copyright law.
+While the source code in this repository is licensed under an open-source license (see `LICENSE`), this license does **not** extend to the artwork, character, or other creative materials.
 
-For inquiries about usage rights, please contact: ashleysally00@gmail.com
+All creative assets are licensed under  
+[CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)  
+The source code is licensed under the [MIT License](./LICENSE)
+
+For licensing inquiries or usage requests, please contact:  
+**ashleysally00@gmail.com**
+
